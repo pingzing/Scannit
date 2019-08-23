@@ -14,7 +14,7 @@ namespace Scannit
 
         public async Task OnCardAdded(ISmartCard smartCard)
         {
-            //var travelCard = await CardOperations.ReadTravelCard(smartCard);
+            var travelCard = await CardOperations.ReadTravelCard(smartCard);
         }
 
         protected override void OnStart()

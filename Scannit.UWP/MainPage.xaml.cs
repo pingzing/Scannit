@@ -44,7 +44,6 @@ namespace Scannit.UWP
         private async Task ReadCard(SmartCard card)
         {
             UwpSmartCard smartCard = new UwpSmartCard(card);
-            var travelCard = await CardOperations.ReadTravelCard(smartCard);
             await _crossPlatApp.OnCardAdded(smartCard);
         }
 
