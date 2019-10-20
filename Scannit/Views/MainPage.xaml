@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Scannit.Views.MainPage"
+             
+             BindingContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
+             
+             Title="Scannit">
+
+    <Grid>
+        <StackLayout>
+            <Label FontSize="Header" Text="Value"/>
+            <Label FontSize="Body" Text="{Binding Card.StoredValueCents}"/>
+
+            <Label FontSize="Header" Text="Season Pass"/>
+            <Label FontSize="Body" Text="{Binding Card.PeriodPass.PeriodEndDate2}"/>
+        </StackLayout>
+    </Grid>
+
+</ContentPage>

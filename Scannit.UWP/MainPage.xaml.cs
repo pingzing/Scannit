@@ -1,8 +1,9 @@
 ﻿using System;
-using System.Threading.Tasks;
+using Scannit.Messaging;
 using Windows.Devices.Enumeration;
 using Windows.Devices.SmartCards;
 using Windows.UI.Xaml;
+using Xamarin.Forms;
 
 namespace Scannit.UWP
 {
@@ -31,20 +32,20 @@ namespace Scannit.UWP
                 reader.CardRemoved += Reader_CardRemoved;
                 foreach (var foundCard in (await reader.FindAllCardsAsync()))
                 {
-                    await ReadCard(foundCard);
+                    ReadCard(foundCard);
                 }
             }
         }
 
-        private async void Reader_CardAdded(SmartCardReader sender, CardAddedEventArgs args)
+        private void Reader_CardAdded(SmartCardReader sender, CardAddedEventArgs args)
         {
-            await ReadCard(args.SmartCard);
+            ReadCard(args.SmartCard);
         }
 
-        private async Task ReadCard(SmartCard card)
+        private void ReadCard(SmartCard card)
         {
             UwpSmartCard smartCard = new UwpSmartCard(card);
-            await _crossPlatApp.OnCardAdded(smartCard);
+            MessagingCenter.Send(new CardAddedMessage { Card = smartCard }, null);
         }
 
         private void Reader_CardRemoved(SmartCardReader sender, CardRemovedEventArgs args)

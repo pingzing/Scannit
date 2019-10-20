@@ -6,6 +6,7 @@ using Android.Nfc;
 using Android.Nfc.Tech;
 using Android.OS;
 using Android.Runtime;
+using Scannit.Messaging;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -75,7 +76,7 @@ namespace Scannit.Droid
                 Tag tag = (Tag)intent.GetParcelableExtra(NfcAdapter.ExtraTag);
                 IsoDep card = IsoDep.Get(tag);
                 AndroidSmartCard smartCard = new AndroidSmartCard(card);
-                await _crossPlatApp.OnCardAdded(smartCard);
+                MessagingCenter.Send(new CardAddedMessage { Card = smartCard }, null);
             }
         }
 

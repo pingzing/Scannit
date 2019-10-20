@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+﻿using Scannit.Views;
 using Xamarin.Forms;
 
 namespace Scannit
@@ -10,11 +10,6 @@ namespace Scannit
             InitializeComponent();
 
             MainPage = new MainPage();
-        }
-
-        public async Task OnCardAdded(ISmartCard smartCard)
-        {
-            var travelCard = await CardOperations.ReadTravelCard(smartCard);
         }
 
         protected override void OnStart()
