@@ -1,4 +1,6 @@
 ﻿using Scannit.Messaging;
+using System;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace Scannit.ViewModels

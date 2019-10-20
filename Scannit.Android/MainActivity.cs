@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
@@ -6,6 +7,8 @@ using Android.Nfc;
 using Android.Nfc.Tech;
 using Android.OS;
 using Android.Runtime;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Scannit.Messaging;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -25,7 +28,7 @@ namespace Scannit.Droid
         private Scannit.App _crossPlatApp;
         private NfcAdapter _nfcAdapter;
 
-        protected override async void OnCreate(Bundle savedInstanceState)
+        protected override void OnCreate(Bundle savedInstanceState)
         {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
@@ -34,6 +37,7 @@ namespace Scannit.Droid
 
             Platform.Init(this, savedInstanceState);
             Forms.Init(this, savedInstanceState);
+            Startup.Init(ConfigureServices);
             _crossPlatApp = new App();
             LoadApplication(_crossPlatApp);
 
@@ -49,7 +53,12 @@ namespace Scannit.Droid
                 // TODO: Tell the main app that sadness is in the future unlessa action is taken.
             }
 
-            await HandleIntent(Intent);
+            HandleIntent(Intent);
+        }
+
+        private void ConfigureServices(HostBuilderContext context, IServiceCollection services)
+        {
+
         }
 
         protected override void OnResume()
@@ -64,12 +73,12 @@ namespace Scannit.Droid
             base.OnPause();
         }
 
-        protected async override void OnNewIntent(Intent intent)
+        protected override void OnNewIntent(Intent intent)
         {
-            await HandleIntent(intent);
+            HandleIntent(intent);
         }
 
-        private async Task HandleIntent(Intent intent)
+        private void HandleIntent(Intent intent)
         {
             if (intent.Action == NfcAdapter.ActionTechDiscovered)
             {

@@ -6,18 +6,23 @@
              mc:Ignorable="d"
              x:Class="Scannit.Views.MainPage"
              
-             BindingContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
+             xmlns:ext="clr-namespace:Scannit.Extensions"
              
              Title="Scannit">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Settings" Clicked="SettingsButton_Clicked"/>
+    </ContentPage.ToolbarItems>
 
-    <Grid>
-        <StackLayout>
-            <Label FontSize="Header" Text="Value"/>
-            <Label FontSize="Body" Text="{Binding Card.StoredValueCents}"/>
+    
+        <Grid>
+            <StackLayout>
+                <Label FontSize="Title" Text="{ext:Locale ValueHeader}"/>
+                <Label FontSize="Body" d:Text="€20.22" Text="{Binding Card.StoredValueCents}"/>
 
-            <Label FontSize="Header" Text="Season Pass"/>
-            <Label FontSize="Body" Text="{Binding Card.PeriodPass.PeriodEndDate2}"/>
-        </StackLayout>
-    </Grid>
+                <Label FontSize="Title" Text="{ext:Locale SeasonPassHeader}"/>
+                <Label FontSize="Body" d:Text="12/25/2019 at 3:00 AM" Text="{Binding Card.PeriodPass.PeriodEndDate2}"/>
+            </StackLayout>
+        </Grid>
+    
 
 </ContentPage>

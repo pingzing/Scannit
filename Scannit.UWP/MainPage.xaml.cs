@@ -1,4 +1,6 @@
 ﻿using System;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Scannit.Messaging;
 using Windows.Devices.Enumeration;
 using Windows.Devices.SmartCards;
@@ -16,8 +18,14 @@ namespace Scannit.UWP
             this.InitializeComponent();
             this.Loaded += MainPage_Loaded;
 
+            Startup.Init(ConfigureServices);
             _crossPlatApp = new Scannit.App();
             LoadApplication(_crossPlatApp);
+        }
+
+        private void ConfigureServices(HostBuilderContext context, IServiceCollection services)
+        {
+            // Handle setting up any native services here.
         }
 
         private async void MainPage_Loaded(object sender, RoutedEventArgs e)

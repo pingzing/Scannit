@@ -5,11 +5,14 @@ namespace Scannit
 {
     public partial class App : Application
     {
+        public NavigationPage Navigator { get; private set; }
+
         public App()
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            Navigator = new NavigationPage(new MainPage());
+            MainPage = Navigator;
         }
 
         protected override void OnStart()
