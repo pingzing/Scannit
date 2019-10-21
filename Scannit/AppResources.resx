@@ -117,8 +117,38 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ExpiresLiteral" xml:space="preserve">
+    <value>Expires: </value>
+  </data>
+  <data name="LastTopUpHeader" xml:space="preserve">
+    <value>Last top-up</value>
+  </data>
+  <data name="SeasonPassDaysAndPaid" xml:space="preserve">
+    <value> days and paid </value>
+    <comment>Note space at beginning and end.</comment>
+  </data>
+  <data name="SeasonPassDaysRemaining" xml:space="preserve">
+    <value>{0} days remaining</value>
+  </data>
+  <data name="SeasonPassExpired" xml:space="preserve">
+    <value>Expired</value>
+  </data>
   <data name="SeasonPassHeader" xml:space="preserve">
     <value>Season Pass</value>
+  </data>
+  <data name="SeasonPassHoursRemaining" xml:space="preserve">
+    <value>{0}h, {1}min remaining</value>
+  </data>
+  <data name="SeasonPassLastRenewed" xml:space="preserve">
+    <value>Last renewed</value>
+  </data>
+  <data name="SeasonPassOn" xml:space="preserve">
+    <value>On </value>
+    <comment>Note space at the end.</comment>
+  </data>
+  <data name="SeasonPassYouAdded" xml:space="preserve">
+    <value>, which cost </value>
+    <comment>Note space at the end, and leading comma.</comment>
   </data>
   <data name="ValueHeader" xml:space="preserve">
     <value>Value</value>

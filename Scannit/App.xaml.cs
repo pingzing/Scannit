@@ -1,5 +1,7 @@
-﻿using Scannit.Views;
+﻿using System.Diagnostics;
+using Scannit.Views;
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 
 namespace Scannit
 {
@@ -9,6 +11,10 @@ namespace Scannit
 
         public App()
         {
+#if DEBUG
+            Xamarin.Forms.Internals.Log.Listeners.Add(new DelegateLogListener((arg1, arg2) => Debug.WriteLine(arg2)));
+#endif
+
             InitializeComponent();
 
             Navigator = new NavigationPage(new MainPage());

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -20,7 +21,7 @@ namespace Scannit.Extensions
             if (translation == null)
             {
 #if DEBUG
-                throw new ArgumentException($"Key {Text}, not found in AppResources for {AppResources.Culture.Name}");
+                throw new ArgumentException($"Key '{Text}', not found in AppResources for the culture: {Thread.CurrentThread.CurrentUICulture.Name}.");
 #else
                 translation = $"#{Text}#"; // Displays the key to the user. Oh no!
 #endif

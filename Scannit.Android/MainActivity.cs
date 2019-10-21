@@ -85,7 +85,7 @@ namespace Scannit.Droid
                 Tag tag = (Tag)intent.GetParcelableExtra(NfcAdapter.ExtraTag);
                 IsoDep card = IsoDep.Get(tag);
                 AndroidSmartCard smartCard = new AndroidSmartCard(card);
-                MessagingCenter.Send(new CardAddedMessage { Card = smartCard }, null);
+                MessagingCenter.Send(new CardAddedMessage { Card = smartCard }, "");
             }
         }
 

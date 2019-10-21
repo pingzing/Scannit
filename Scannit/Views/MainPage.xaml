@@ -13,16 +13,44 @@
         <ToolbarItem Text="Settings" Clicked="SettingsButton_Clicked"/>
     </ContentPage.ToolbarItems>
 
-    
-        <Grid>
-            <StackLayout>
-                <Label FontSize="Title" Text="{ext:Locale ValueHeader}"/>
-                <Label FontSize="Body" d:Text="€20.22" Text="{Binding Card.StoredValueCents}"/>
 
-                <Label FontSize="Title" Text="{ext:Locale SeasonPassHeader}"/>
-                <Label FontSize="Body" d:Text="12/25/2019 at 3:00 AM" Text="{Binding Card.PeriodPass.PeriodEndDate2}"/>
-            </StackLayout>
-        </Grid>
-    
+    <Grid>
+        <StackLayout BindingContext="{Binding Card}" Spacing="0">
+            <Label FontSize="Title" d:Text="Season Pass" Text="{ext:Locale SeasonPassHeader}"/>
+            <Label FontSize="Body" LineBreakMode="WordWrap">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span d:Text="ABCD Ticket" Text="{Binding SeasonPassValidityArea}" />
+                        <Span Text="&#x0a;"/>
+                        <Span d:Text="03:25 remaining" Text="{Binding SeasonPassExpiryString, Mode=OneWay}"/>
+                        <Span Text="&#x0a;"/>
+                        <!--Line break-->
+                        <Span d:Text="Expires: " Text="{ext:Locale ExpiresLiteral}"/>
+                        <Span d:Text="88/88/88 88:88PM" 
+                                        Text="{Binding LatestExpiryDate, Mode=OneWay, StringFormat='{0:g}'}"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label FontSize="Large" d:Text="Last renewed" Text="{ext:Locale SeasonPassLastRenewed}"/>
+            <Label FontSize="Body" LineBreakMode="WordWrap">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span d:Text="On " Text="{ext:Locale SeasonPassOn}"/>
+                        <Span d:Text="88/88/8888" Text="{Binding SeasonPassLoadDate}" FontSize="Body" FontAttributes="Bold"/>
+                        <Span d:Text=", you added " Text="{ext:Locale SeasonPassYouAdded}"/>
+                        <Span d:Text="30" Text="{Binding SeasonPassLastLoadNumberOfDays}" FontSize="Body" FontAttributes="Bold"/>
+                        <Span d:Text=" days, which cost " Text="{ext:Locale SeasonPassDaysAndPaid}"/>
+                        <Span d:Text="€120." Text="{Binding SeasonPassLastLoadPrice}" FontAttributes="Bold" FontSize="Body"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <Label FontSize="Title" d:Text="Value" Text="{ext:Locale ValueHeader}" Margin="0, 15, 0, 0"/>
+            <Label FontSize="Body" d:Text="€20.22" Text="{Binding ValueString}"/>
+            <Label FontSize="Large" d:Text="Last top-up" Text="{ext:Locale LastTopUpHeader}"/>
+            <Label FontSize="Body" d:Text="€20 on 88/88/8888"/>
+        </StackLayout>
+    </Grid>
+
 
 </ContentPage>

@@ -61,11 +61,92 @@ namespace Scannit {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Expires: .
+        /// </summary>
+        public static string ExpiresLiteral {
+            get {
+                return ResourceManager.GetString("ExpiresLiteral", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last top-up.
+        /// </summary>
+        public static string LastTopUpHeader {
+            get {
+                return ResourceManager.GetString("LastTopUpHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  days and paid .
+        /// </summary>
+        public static string SeasonPassDaysAndPaid {
+            get {
+                return ResourceManager.GetString("SeasonPassDaysAndPaid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} days remaining.
+        /// </summary>
+        public static string SeasonPassDaysRemaining {
+            get {
+                return ResourceManager.GetString("SeasonPassDaysRemaining", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expired.
+        /// </summary>
+        public static string SeasonPassExpired {
+            get {
+                return ResourceManager.GetString("SeasonPassExpired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Season Pass.
         /// </summary>
         public static string SeasonPassHeader {
             get {
                 return ResourceManager.GetString("SeasonPassHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}h, {1}min remaining.
+        /// </summary>
+        public static string SeasonPassHoursRemaining {
+            get {
+                return ResourceManager.GetString("SeasonPassHoursRemaining", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last renewed.
+        /// </summary>
+        public static string SeasonPassLastRenewed {
+            get {
+                return ResourceManager.GetString("SeasonPassLastRenewed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to On .
+        /// </summary>
+        public static string SeasonPassOn {
+            get {
+                return ResourceManager.GetString("SeasonPassOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to , which cost .
+        /// </summary>
+        public static string SeasonPassYouAdded {
+            get {
+                return ResourceManager.GetString("SeasonPassYouAdded", resourceCulture);
             }
         }
         

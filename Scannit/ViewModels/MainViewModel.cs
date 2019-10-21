@@ -1,5 +1,7 @@
 ﻿using Scannit.Messaging;
+using ScannitSharp;
 using System;
+using System.Globalization;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -7,8 +9,8 @@ namespace Scannit.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
-        private ScannitSharp.TravelCard _card;
-        public ScannitSharp.TravelCard Card
+        private TravelCardViewModel _card;
+        public TravelCardViewModel Card
         {
             get => _card;
             set => Set(ref _card, value);
@@ -27,7 +29,14 @@ namespace Scannit.ViewModels
                 return;
             }
 
-            Card = await CardOperations.ReadTravelCard(card.Card);
+            var readCard = await CardOperations.ReadTravelCard(card.Card);
+            if (readCard == null)
+            {
+                // TODO: Display more messages of sadness.
+                return;
+            }
+
+            Card = new TravelCardViewModel(readCard);
         }
     }
 }

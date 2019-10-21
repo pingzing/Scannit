@@ -53,7 +53,7 @@ namespace Scannit.UWP
         private void ReadCard(SmartCard card)
         {
             UwpSmartCard smartCard = new UwpSmartCard(card);
-            MessagingCenter.Send(new CardAddedMessage { Card = smartCard }, null);
+            MessagingCenter.Send(new CardAddedMessage { Card = smartCard }, "");
         }
 
         private void Reader_CardRemoved(SmartCardReader sender, CardRemovedEventArgs args)
