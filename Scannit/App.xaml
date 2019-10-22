@@ -8,6 +8,13 @@
              
              xmlns:local="clr-namespace:Scannit">
     <Application.Resources>
-        
+        <OnPlatform x:Key="HslPiktoNormalFont" x:TypeArguments="x:String">
+            <On Platform="Android" Value="HSL-Pikto.ttf#HSL-Pikto"/>
+            <On Platform="UWP" Value="Assets/Fonts/HSL-Pikto.ttf#HSL-Pikto"/>
+        </OnPlatform>
+        <OnPlatform x:Key="HslPiktoFrameFont" x:TypeArguments="x:String">
+            <On Platform="Android" Value="HSL-Pikto Frame.ttf#HSL-Pikto Frame"/>
+            <On Platform="UWP" Value="Assets/Fonts/HSL-Pikto Frame.ttf#HSL-Pikto Frame"/>
+        </OnPlatform>
     </Application.Resources>
 </Application>

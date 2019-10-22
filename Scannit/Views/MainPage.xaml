@@ -6,16 +6,35 @@
              mc:Ignorable="d"
              x:Class="Scannit.Views.MainPage"
              
-             xmlns:ext="clr-namespace:Scannit.Extensions"
+             xmlns:ext="clr-namespace:Scannit.Extensions"             
+             xmlns:skiaforms="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
              
              Title="Scannit">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Settings" Clicked="SettingsButton_Clicked"/>
+        <ToolbarItem Text="Settings" Clicked="SettingsButton_Clicked">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource Glyph="&#x21;" FontFamily="{DynamicResource HslPiktoNormalFont}" Size="35" Color="Black"/>
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
     </ContentPage.ToolbarItems>
 
 
     <Grid>
-        <StackLayout BindingContext="{Binding Card}" Spacing="0">
+        <StackLayout x:Name="CardDataStackLayout" BindingContext="{Binding Card}" Spacing="0" d:IsVisible="False">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup Name="CardDataStates">
+                    <VisualState Name="NoCardData">
+                        <VisualState.Setters>
+                            <Setter Property="IsVisible" Value="False"/>
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState Name="CardData">
+                        <VisualState.Setters>
+                            <Setter Property="IsVisible" Value="True"/>
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
             <Label FontSize="Title" d:Text="Season Pass" Text="{ext:Locale SeasonPassHeader}"/>
             <Label FontSize="Body" LineBreakMode="WordWrap">
                 <Label.FormattedText>
@@ -50,6 +69,25 @@
             <Label FontSize="Large" d:Text="Last top-up" Text="{ext:Locale LastTopUpHeader}"/>
             <Label FontSize="Body" d:Text="€20 on 88/88/8888"/>
         </StackLayout>
+        <Grid x:Name="NoCardDataGrid" d:IsVisible="True">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup Name="CardDataStates">
+                    <VisualState Name="NoCardData">
+                        <VisualState.Setters>
+                            <Setter Property="IsVisible" Value="True"/>
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState Name="CardData">
+                        <VisualState.Setters>
+                            <Setter Property="IsVisible" Value="False"/>
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <ContentView x:Name="CanvasContainer" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="200" HeightRequest="200">
+                <skiaforms:SKCanvasView x:Name="SkiaCanvas" PaintSurface="SkiaCanvas_PaintSurface"/>
+            </ContentView>
+        </Grid>
     </Grid>
 
 
