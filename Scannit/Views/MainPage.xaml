@@ -84,9 +84,14 @@
                     </VisualState>
                 </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
-            <ContentView x:Name="CanvasContainer" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="200" HeightRequest="200">
+            <Grid x:Name="CanvasContainer" HorizontalOptions="Fill" VerticalOptions="Fill" Padding="20">
                 <skiaforms:SKCanvasView x:Name="SkiaCanvas" PaintSurface="SkiaCanvas_PaintSurface"/>
-            </ContentView>
+                <Label d:Text="Tap your card against your NFC reader" 
+                       Text="{ext:Locale ScanCardPrompt}" 
+                       LineBreakMode="WordWrap"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"/>
+            </Grid>
         </Grid>
     </Grid>
 

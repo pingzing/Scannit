@@ -123,6 +123,9 @@
   <data name="LastTopUpHeader" xml:space="preserve">
     <value>Last top-up</value>
   </data>
+  <data name="ScanCardPrompt" xml:space="preserve">
+    <value>Tap your card against your NFC reader</value>
+  </data>
   <data name="SeasonPassDaysAndPaid" xml:space="preserve">
     <value> days and paid </value>
     <comment>Note space at beginning and end.</comment>

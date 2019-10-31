@@ -79,6 +79,15 @@ namespace Scannit {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tap your card against your NFC reader.
+        /// </summary>
+        public static string ScanCardPrompt {
+            get {
+                return ResourceManager.GetString("ScanCardPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to  days and paid .
         /// </summary>
         public static string SeasonPassDaysAndPaid {
