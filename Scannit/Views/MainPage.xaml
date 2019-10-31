@@ -35,8 +35,8 @@
                     </VisualState>
                 </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
-            <Label FontSize="Title" d:Text="Season Pass" Text="{ext:Locale SeasonPassHeader}"/>
-            <Label FontSize="Body" LineBreakMode="WordWrap">
+            <Label x:Name="SeasonPassHeader" FontSize="Title" d:Text="Season Pass" Text="{ext:Locale SeasonPassHeader}"/>
+            <Label x:Name="SeasonPassInfo" FontSize="Body" LineBreakMode="WordWrap">
                 <Label.FormattedText>
                     <FormattedString>
                         <Span d:Text="ABCD Ticket" Text="{Binding SeasonPassValidityArea}" />
@@ -50,8 +50,8 @@
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
-            <Label FontSize="Large" d:Text="Last renewed" Text="{ext:Locale SeasonPassLastRenewed}"/>
-            <Label FontSize="Body" LineBreakMode="WordWrap">
+            <Label x:Name="LastRenewedTitle" FontSize="Subtitle" d:Text="Last renewed" Text="{ext:Locale SeasonPassLastRenewed}"/>
+            <Label x:Name="SeasonPassLastRenewalInfo" FontSize="Body" LineBreakMode="WordWrap">
                 <Label.FormattedText>
                     <FormattedString>
                         <Span d:Text="On " Text="{ext:Locale SeasonPassOn}"/>
@@ -66,7 +66,7 @@
 
             <Label FontSize="Title" d:Text="Value" Text="{ext:Locale ValueHeader}" Margin="0, 15, 0, 0"/>
             <Label FontSize="Body" d:Text="€20.22" Text="{Binding ValueString}"/>
-            <Label FontSize="Large" d:Text="Last top-up" Text="{ext:Locale LastTopUpHeader}"/>
+            <Label FontSize="Subtitle" d:Text="Last top-up" Text="{ext:Locale LastTopUpHeader}"/>
             <Label FontSize="Body" d:Text="€20 on 88/88/8888"/>
         </StackLayout>
         <Grid x:Name="NoCardDataGrid" d:IsVisible="True">

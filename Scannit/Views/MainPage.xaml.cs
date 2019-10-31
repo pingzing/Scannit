@@ -58,8 +58,11 @@ namespace Scannit.Views
 
         private void GoToState(string stateName)
         {
-            VisualStateManager.GoToState(CardDataStackLayout, stateName);
-            VisualStateManager.GoToState(NoCardDataGrid, stateName);
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                VisualStateManager.GoToState(CardDataStackLayout, stateName);
+                VisualStateManager.GoToState(NoCardDataGrid, stateName);
+            });
         }
 
         private void SkiaCanvas_PaintSurface(object sender, SkiaSharp.Views.Forms.SKPaintSurfaceEventArgs e)

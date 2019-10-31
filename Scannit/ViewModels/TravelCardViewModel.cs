@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
+using ScannitSharp;
 
 namespace Scannit.ViewModels
 {
@@ -9,19 +10,24 @@ namespace Scannit.ViewModels
     {
         private readonly ScannitSharp.TravelCard _backingCard;
 
-        public TravelCardViewModel(ScannitSharp.TravelCard backingCard)
+        public TravelCardViewModel(TravelCard backingCard)
         {
             _backingCard = backingCard;
-            SetExpiryString(backingCard);
+            SeasonPasses[0] = new SeasonPassViewModel(_backingCard.PeriodPass.ProductCode1,
+                _backingCard.PeriodPass.PeriodStartDate1,
+                _backingCard.PeriodPass.PeriodEndDate1,
+                _backingCard.PeriodPass.ValidityArea1);
+            SeasonPasses[1] = new SeasonPassViewModel(_backingCard.PeriodPass.ProductCode2,
+                _backingCard.PeriodPass.PeriodStartDate2,
+                _backingCard.PeriodPass.PeriodEndDate2,
+                _backingCard.PeriodPass.ValidityArea2);
         }
 
-        // TODO: Break Season Pass stuff apart into SeasonPassViewModels, and just display both.
-
-        private string _seasonPassExpiryString;
-        public string SeasonPassExpiryString
+        private SeasonPassViewModel[] _seasonPasses = new SeasonPassViewModel[2];
+        public SeasonPassViewModel[] SeasonPasses
         {
-            get => _seasonPassExpiryString;
-            set => Set(ref _seasonPassExpiryString, value);
+            get => _seasonPasses;
+            set => Set(ref _seasonPasses, value);
         }
 
         public DateTimeOffset? LatestExpiryDate
@@ -42,7 +48,7 @@ namespace Scannit.ViewModels
         public string SeasonPassLastLoadPrice => $"€{_backingCard?.PeriodPass?.LoadedPeriodPrice / 100}.";
         public string ValueString => $"€{_backingCard.StoredValueCents / 100m}";
 
-        private void SetExpiryString(ScannitSharp.TravelCard card)
+        private void SetExpiryString(TravelCard card)
         {
             if (card == null)
             {
@@ -54,22 +60,6 @@ namespace Scannit.ViewModels
             if (card.PeriodPass.PeriodEndDate2 > latestEndDate)
             {
                 latestEndDate = card.PeriodPass.PeriodEndDate2;
-            }
-
-            TimeSpan timeRemaining = latestEndDate - now;
-            if (timeRemaining < TimeSpan.Zero)
-            {
-                timeRemaining = TimeSpan.Zero;
-            }
-
-            if (timeRemaining.Days >= 1)
-            {
-                SeasonPassExpiryString = String.Format(AppResources.SeasonPassDaysRemaining, timeRemaining.Days);
-            }
-            else
-            {
-                string sep = DateTimeFormatInfo.CurrentInfo.TimeSeparator;
-                SeasonPassExpiryString = String.Format(AppResources.SeasonPassHoursRemaining, timeRemaining.Hours, timeRemaining.Minutes);
             }
         }
     }

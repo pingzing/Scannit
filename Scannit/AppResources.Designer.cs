@@ -88,7 +88,7 @@ namespace Scannit {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to  days and paid .
+        ///   Looks up a localized string similar to  days which cost .
         /// </summary>
         public static string SeasonPassDaysAndPaid {
             get {
@@ -151,7 +151,7 @@ namespace Scannit {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to , which cost .
+        ///   Looks up a localized string similar to , you added .
         /// </summary>
         public static string SeasonPassYouAdded {
             get {

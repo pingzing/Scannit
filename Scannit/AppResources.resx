@@ -127,7 +127,7 @@
     <value>Tap your card against your NFC reader</value>
   </data>
   <data name="SeasonPassDaysAndPaid" xml:space="preserve">
-    <value> days and paid </value>
+    <value> days which cost </value>
     <comment>Note space at beginning and end.</comment>
   </data>
   <data name="SeasonPassDaysRemaining" xml:space="preserve">
@@ -150,7 +150,7 @@
     <comment>Note space at the end.</comment>
   </data>
   <data name="SeasonPassYouAdded" xml:space="preserve">
-    <value>, which cost </value>
+    <value>, you added </value>
     <comment>Note space at the end, and leading comma.</comment>
   </data>
   <data name="ValueHeader" xml:space="preserve">
