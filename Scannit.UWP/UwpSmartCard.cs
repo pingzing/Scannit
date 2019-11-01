@@ -35,9 +35,15 @@ namespace Scannit.UWP
             return (await _backingConnection.TransmitAsync(buffer.AsBuffer())).ToArray();
         }
 
-        public void Dispose()
+        protected virtual void Dispose(bool cleanUpManagedToo)
         {
             _backingConnection.Dispose();
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }

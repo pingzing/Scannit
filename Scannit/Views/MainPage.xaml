@@ -8,7 +8,7 @@
              
              xmlns:ext="clr-namespace:Scannit.Extensions"             
              xmlns:skiaforms="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
-             
+             xmlns:viewmodels="clr-namespace:Scannit.ViewModels"
              Title="Scannit">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Settings" Clicked="SettingsButton_Clicked">
@@ -20,7 +20,10 @@
 
 
     <Grid>
-        <StackLayout x:Name="CardDataStackLayout" BindingContext="{Binding Card}" Spacing="0" d:IsVisible="False">
+        <StackLayout x:Name="CardDataStackLayout"
+                     BindingContext="{Binding Card}" 
+                     Spacing="0" 
+                     d:IsVisible="False">
             <VisualStateManager.VisualStateGroups>
                 <VisualStateGroup Name="CardDataStates">
                     <VisualState Name="NoCardData">
@@ -35,21 +38,27 @@
                     </VisualState>
                 </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
+            
             <Label x:Name="SeasonPassHeader" FontSize="Title" d:Text="Season Pass" Text="{ext:Locale SeasonPassHeader}"/>
-            <Label x:Name="SeasonPassInfo" FontSize="Body" LineBreakMode="WordWrap">
-                <Label.FormattedText>
-                    <FormattedString>
-                        <Span d:Text="ABCD Ticket" Text="{Binding SeasonPassValidityArea}" />
-                        <Span Text="&#x0a;"/>
-                        <Span d:Text="03:25 remaining" Text="{Binding SeasonPassExpiryString, Mode=OneWay}"/>
-                        <Span Text="&#x0a;"/>
-                        <!--Line break-->
-                        <Span d:Text="Expires: " Text="{ext:Locale ExpiresLiteral}"/>
-                        <Span d:Text="88/88/88 88:88PM" 
-                                        Text="{Binding LatestExpiryDate, Mode=OneWay, StringFormat='{0:g}'}"/>
-                    </FormattedString>
-                </Label.FormattedText>
-            </Label>
+            <StackLayout BindableLayout.ItemsSource="{Binding SeasonPasses}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate x:DataType="viewmodels:SeasonPassViewModel">
+                        <StackLayout Spacing="0">
+                            <Label Text="{Binding ValidityAreaString}"/>
+                            <Label Text="{Binding ExpiryString}"/>
+                            <Label>
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span d:Text="Expires: " Text="{ext:Locale ExpiresLiteral}"/>
+                                        <Span d:Text="88/88/88 88:88PM" 
+                                              Text="{Binding EndDate, Mode=OneWay, StringFormat='{0:g}'}"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        </StackLayout>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </StackLayout>
             <Label x:Name="LastRenewedTitle" FontSize="Subtitle" d:Text="Last renewed" Text="{ext:Locale SeasonPassLastRenewed}"/>
             <Label x:Name="SeasonPassLastRenewalInfo" FontSize="Body" LineBreakMode="WordWrap">
                 <Label.FormattedText>
@@ -66,9 +75,19 @@
 
             <Label FontSize="Title" d:Text="Value" Text="{ext:Locale ValueHeader}" Margin="0, 15, 0, 0"/>
             <Label FontSize="Body" d:Text="€20.22" Text="{Binding ValueString}"/>
-            <Label FontSize="Subtitle" d:Text="Last top-up" Text="{ext:Locale LastTopUpHeader}"/>
-            <Label FontSize="Body" d:Text="€20 on 88/88/8888"/>
+            <Label FontSize="Subtitle" d:Text="Last value top-up" Text="{ext:Locale LastTopUpHeader}"/>
+            <Label FontSize="Body">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="{Binding LastValueTopUpAmount}"/>
+                        <Span Text="{ext:Locale LastTopUpValueSeparator}"/>
+                        <Span Text="{Binding LastValueTopUpDate, StringFormat='{0:d}'}"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
         </StackLayout>
+        
+        <!--This UI appears until we receive a valid Card object.-->
         <Grid x:Name="NoCardDataGrid" d:IsVisible="True">
             <VisualStateManager.VisualStateGroups>
                 <VisualStateGroup Name="CardDataStates">

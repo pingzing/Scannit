@@ -45,22 +45,23 @@ namespace Scannit.ViewModels
 
         public string SeasonPassLoadDate => _backingCard?.PeriodPass?.LoadedPeriodDateTime.ToString("d");
         public string SeasonPassLastLoadNumberOfDays => _backingCard?.PeriodPass?.LoadedPeriodLength.ToString();
-        public string SeasonPassLastLoadPrice => $"€{_backingCard?.PeriodPass?.LoadedPeriodPrice / 100}.";
-        public string ValueString => $"€{_backingCard.StoredValueCents / 100m}";
-
-        private void SetExpiryString(TravelCard card)
+        public string SeasonPassLastLoadPrice
         {
-            if (card == null)
+            get
             {
-                return;
-            }
-
-            var now = DateTimeOffset.UtcNow;
-            var latestEndDate = card.PeriodPass.PeriodEndDate1;
-            if (card.PeriodPass.PeriodEndDate2 > latestEndDate)
-            {
-                latestEndDate = card.PeriodPass.PeriodEndDate2;
+                if (_backingCard?.PeriodPass != null)
+                {
+                    return "€" + (_backingCard.PeriodPass.LoadedPeriodPrice / 100).ToString("0.00");
+                }
+                else
+                {
+                    return "";
+                }
             }
         }
+
+        public string ValueString => "€" + (_backingCard.StoredValueCents / 100m).ToString("0.00");
+        public DateTimeOffset LastValueTopUpDate => _backingCard.LastLoadDateTime;
+        public string LastValueTopUpAmount => "€" + (_backingCard.LastLoadValue / 100m).ToString("0.00");
     }
 }

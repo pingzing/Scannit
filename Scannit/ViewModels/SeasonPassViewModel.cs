@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Globalization;
+using System.Linq;
 using OneOf;
+using Scannit.Extensions;
 using ScannitSharp.Models.ProductCodes;
 using ScannitSharp.Models.ValidityAreas;
 
@@ -13,15 +15,23 @@ namespace Scannit.ViewModels
             DateTimeOffset endDate,
             OneOf<OldZone, NewZone, Vehicle> validityArea)
         {
+            _endDate = endDate;
             SetExpiryString(startDate, endDate);
             SetValidityAreaString(validityArea);
         }
 
-        private string _seasonPassExpiryString;
-        public string SeasonPassExpiryString
+        private string _expiryString;
+        public string ExpiryString
         {
-            get => _seasonPassExpiryString;
-            set => Set(ref _seasonPassExpiryString, value);
+            get => _expiryString;
+            set => Set(ref _expiryString, value);
+        }
+
+        private DateTimeOffset _endDate;
+        public DateTimeOffset EndDate
+        {
+            get => _endDate;
+            set => Set(ref _endDate, value);
         }
 
         private string _validityAreaString;
@@ -41,18 +51,33 @@ namespace Scannit.ViewModels
 
             if (timeRemaining.Days >= 1)
             {
-                SeasonPassExpiryString = String.Format(AppResources.SeasonPassDaysRemaining, timeRemaining.Days);
+                ExpiryString = String.Format(AppResources.SeasonPassDaysRemaining, timeRemaining.Days);
             }
             else
             {
                 string sep = DateTimeFormatInfo.CurrentInfo.TimeSeparator;
-                SeasonPassExpiryString = String.Format(AppResources.SeasonPassHoursRemaining, timeRemaining.Hours, timeRemaining.Minutes);
+                ExpiryString = String.Format(AppResources.SeasonPassHoursRemaining, timeRemaining.Hours, timeRemaining.Minutes);
             }
         }
 
         private void SetValidityAreaString(OneOf<OldZone, NewZone, Vehicle> validityArea)
         {
-            throw new NotImplementedException();
+            string validityString = validityArea.Match(
+                oldZone =>
+                {
+                    return $"{AppResources.OldZoneName} {oldZone.Value}";
+                },
+                newZone =>
+                {
+                    return newZone.Value
+                        .Select(x => x.AsShortString())
+                        .Aggregate((accumulated, newVal) => $"{accumulated}{newVal}");
+                },
+                vehicle =>
+                {
+                    return vehicle.Value.AsLocalizedVehicle();
+                });
+            ValidityAreaString = validityString;
         }
     }
 }

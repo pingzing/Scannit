@@ -70,11 +70,29 @@ namespace Scannit {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Last top-up.
+        ///   Looks up a localized string similar to Last value top-up.
         /// </summary>
         public static string LastTopUpHeader {
             get {
                 return ResourceManager.GetString("LastTopUpHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  on .
+        /// </summary>
+        public static string LastTopUpValueSeparator {
+            get {
+                return ResourceManager.GetString("LastTopUpValueSeparator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Region.
+        /// </summary>
+        public static string OldZoneName {
+            get {
+                return ResourceManager.GetString("OldZoneName", resourceCulture);
             }
         }
         
@@ -165,6 +183,69 @@ namespace Scannit {
         public static string ValueHeader {
             get {
                 return ResourceManager.GetString("ValueHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bus.
+        /// </summary>
+        public static string Vehicles_Bus {
+            get {
+                return ResourceManager.GetString("Vehicles.Bus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ferry.
+        /// </summary>
+        public static string Vehicles_Ferry {
+            get {
+                return ResourceManager.GetString("Vehicles.Ferry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Metro.
+        /// </summary>
+        public static string Vehicles_Metro {
+            get {
+                return ResourceManager.GetString("Vehicles.Metro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Train.
+        /// </summary>
+        public static string Vehicles_Train {
+            get {
+                return ResourceManager.GetString("Vehicles.Train", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tram.
+        /// </summary>
+        public static string Vehicles_Tram {
+            get {
+                return ResourceManager.GetString("Vehicles.Tram", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to U-Line.
+        /// </summary>
+        public static string Vehicles_ULine {
+            get {
+                return ResourceManager.GetString("Vehicles.ULine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown.
+        /// </summary>
+        public static string Vehicles_Undefined {
+            get {
+                return ResourceManager.GetString("Vehicles.Undefined", resourceCulture);
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Android.Nfc.Tech;
 
 namespace Scannit.Droid
@@ -33,10 +34,16 @@ namespace Scannit.Droid
             return _backingSmartCard.TransceiveAsync(buffer);
         }
 
-        public void Dispose()
+        protected virtual void Dispose(bool cleanUpManagedToo)
         {
             _backingSmartCard.Close();
             _backingSmartCard.Dispose();
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }

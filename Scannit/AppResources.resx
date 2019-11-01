@@ -121,7 +121,14 @@
     <value>Expires: </value>
   </data>
   <data name="LastTopUpHeader" xml:space="preserve">
-    <value>Last top-up</value>
+    <value>Last value top-up</value>
+  </data>
+  <data name="LastTopUpValueSeparator" xml:space="preserve">
+    <value> on </value>
+    <comment>Note spaces at beginning and end. Separates value and date in the phrase "€20 on 1/1/2019" for example</comment>
+  </data>
+  <data name="OldZoneName" xml:space="preserve">
+    <value>Region</value>
   </data>
   <data name="ScanCardPrompt" xml:space="preserve">
     <value>Tap your card against your NFC reader</value>
@@ -155,5 +162,26 @@
   </data>
   <data name="ValueHeader" xml:space="preserve">
     <value>Value</value>
+  </data>
+  <data name="Vehicles.Bus" xml:space="preserve">
+    <value>Bus</value>
+  </data>
+  <data name="Vehicles.Ferry" xml:space="preserve">
+    <value>Ferry</value>
+  </data>
+  <data name="Vehicles.Metro" xml:space="preserve">
+    <value>Metro</value>
+  </data>
+  <data name="Vehicles.Train" xml:space="preserve">
+    <value>Train</value>
+  </data>
+  <data name="Vehicles.Tram" xml:space="preserve">
+    <value>Tram</value>
+  </data>
+  <data name="Vehicles.ULine" xml:space="preserve">
+    <value>U-Line</value>
+  </data>
+  <data name="Vehicles.Undefined" xml:space="preserve">
+    <value>Unknown</value>
   </data>
 </root>
