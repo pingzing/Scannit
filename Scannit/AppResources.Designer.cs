@@ -61,6 +61,15 @@ namespace Scannit {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Expired.
+        /// </summary>
+        public static string ExpiredLiteral {
+            get {
+                return ResourceManager.GetString("ExpiredLiteral", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Expires: .
         /// </summary>
         public static string ExpiresLiteral {

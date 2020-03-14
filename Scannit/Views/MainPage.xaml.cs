@@ -1,4 +1,5 @@
-﻿using Scannit.ViewModels;
+﻿using Scannit.Test;
+using Scannit.ViewModels;
 using SkiaSharp;
 using System;
 using System.ComponentModel;
@@ -67,8 +68,7 @@ namespace Scannit.Views
 
         private void SkiaCanvas_PaintSurface(object sender, SkiaSharp.Views.Forms.SKPaintSurfaceEventArgs e)
         {
-            // Draw the four corners of the "card outline".
-            Debug.WriteLine("Skia painting.");
+            // Draw the four corners of the "card outline".            
             SKImageInfo info = e.Info;
             SKSurface surface = e.Surface;
             SKCanvas canvas = surface.Canvas;
@@ -121,12 +121,12 @@ namespace Scannit.Views
         private void OnDebugAddCardClicked()
         {
             ViewModel.Card = new TravelCardViewModel(ScannitSharp.TravelCard.CreateTravelCard(
-                appInfo: new byte[0],
-                controlInfo: new byte[0],
-                periodPass: new byte[0],
-                storedValue: new byte[0],
-                eTicket: new byte[0],
-                history: new byte[0]
+                TestCardData.AppInfoBytes,
+                TestCardData.ControlInfoBytes,
+                TestCardData.PeriodPassBytes,
+                TestCardData.StoredValueBytes,
+                TestCardData.ETicketBytes,
+                TestCardData.AllHistoryBytes
             ));
         }
     }

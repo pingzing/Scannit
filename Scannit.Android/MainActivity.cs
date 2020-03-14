@@ -80,7 +80,7 @@ namespace Scannit.Droid
 
         private void HandleIntent(Intent intent)
         {
-            if (intent.Action == NfcAdapter.ActionTechDiscovered)
+           if (intent.Action == NfcAdapter.ActionTechDiscovered)
             {
                 Tag tag = (Tag)intent.GetParcelableExtra(NfcAdapter.ExtraTag);
                 IsoDep card = IsoDep.Get(tag);

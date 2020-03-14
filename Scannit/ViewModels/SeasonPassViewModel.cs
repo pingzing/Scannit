@@ -28,11 +28,10 @@ namespace Scannit.ViewModels
         }
 
         private DateTimeOffset _endDate;
-        public DateTimeOffset EndDate
-        {
-            get => _endDate;
-            set => Set(ref _endDate, value);
-        }
+        public DateTimeOffset EndDate => _endDate;
+
+        public bool IsExpired => DateTimeOffset.UtcNow > EndDate;
+        public bool IsValid => !IsExpired;
 
         private string _validityAreaString;
         public string ValidityAreaString

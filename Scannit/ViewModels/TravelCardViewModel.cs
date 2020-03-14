@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Text;
 using ScannitSharp;
 
@@ -21,7 +22,10 @@ namespace Scannit.ViewModels
                 _backingCard.PeriodPass.PeriodStartDate2,
                 _backingCard.PeriodPass.PeriodEndDate2,
                 _backingCard.PeriodPass.ValidityArea2);
+            SeasonPasses = SeasonPasses.OrderByDescending(x => x.EndDate).ToArray();
         }
+
+        public string CardId => _backingCard.ApplicationInstanceId;
 
         private SeasonPassViewModel[] _seasonPasses = new SeasonPassViewModel[2];
         public SeasonPassViewModel[] SeasonPasses
